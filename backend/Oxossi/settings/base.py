@@ -19,7 +19,7 @@ ADMINS = (("Admin", "danrleywillian@gmail.com"),)
 
 AUTH_USER_MODEL = "users.User"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["dwcorp.com.br", "143.198.1.240", "127.0.0.1", "localhost"]
 
 DATABASES = {
     "default": config("DATABASE_URL", cast=db_url),
