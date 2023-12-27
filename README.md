@@ -61,11 +61,6 @@ Also, includes a Render.com `render.yaml` and a working Django `production.py` s
 -   `django-debreach` for additional protection against BREACH attack
 -   `whitenoise` and `brotlipy` for serving static assets
 
-## Share your project!
-
-Several people have leveraged our boilerplate to start spinoffs or to boost their efforts in the challenging pursuit of securing funding. Starting with a solid foundation allows you to create more resilient products and focus on what really matters: discovering and delivering value to your customers. If you are one of those people, we're eager to help you even more! We can spread the word about your project across our social media platforms, giving you access to a broader audience.
-
-Send us an email at contact@vintasoftware.com telling us a bit more about how our boilerplate helped you boost your project.
 
 ## Project bootstrap [![main](https://github.com/vintasoftware/django-react-boilerplate/actions/workflows/main.yml/badge.svg)](https://github.com/vintasoftware/django-react-boilerplate/actions/workflows/main.yml) [![Known Vulnerabilities](https://snyk.io/test/github/vintasoftware/django-react-boilerplate/badge.svg)](https://snyk.io/test/github/vintasoftware/django-react-boilerplate)
 
@@ -109,7 +104,8 @@ After completing ALL of the above, remove this `Project bootstrap` section from 
 -   Open a new command line window and go to the project's directory
 -   Run the initial setup:
     `make docker_setup`
--   Create the migrations for `users` app:  
+-   Create the migrations for `users` app: 
+    `docker compose run backend chmod 777 -R users/migrations` (avoid access denied to directory or can't write file in directory)
     `make docker_makemigrations`
 -   Run the migrations:
     `make docker_migrate`
@@ -203,19 +199,7 @@ mv proj_main.yml .github/workflows/main.yml
 
 ### Setup
 
-This project comes with an `render.yaml` file, which can be used to create an app on Render.com from a GitHub repository.
 
-Before deploying, please make sure you've generated an up-to-date `poetry.lock` file containing the Python dependencies. This is necessary even if you've used Docker for local runs. Do so by following [these instructions](#setup-the-backend-app).
-
-After setting up the project, you can init a repository and push it on GitHub. If your repository is public, you can use the following button:
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
-
-If you are in a private repository, access the following link replacing `$YOUR_REPOSITORY_URL$` with your repository link.
-
--   `https://render.com/deploy?repo=$YOUR_REPOSITORY_URL$`
-
-Keep reading to learn how to configure the prompted environment variables.
 
 #### `ALLOWED_HOSTS`
 
@@ -303,15 +287,3 @@ Using atomic requests in production prevents several database consistency issues
 ### `CELERY_ACKS_LATE = True`
 
 We believe Celery tasks should be idempotent. So for us it's safe to set `CELERY_ACKS_LATE = True` to ensure tasks will be re-queued after a worker failure. Check Celery docs on ["Should I use retry or acks_late?"](https://docs.celeryq.dev/en/stable/faq.html#faq-acks-late-vs-retry) for more info.
-
-## Contributing
-
-If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/vintasoftware/django-react-boilerplate/issues).
-
-Check our [contributing guide](https://github.com/vintasoftware/django-react-boilerplate/blob/main/CONTRIBUTING.md) to learn more about our development process and how you can test your changes to the boilerplate.
-
-## Commercial Support
-
-[![alt text](https://avatars2.githubusercontent.com/u/5529080?s=80&v=4 "Vinta Logo")](https://www.vinta.com.br/)
-
-This project is maintained by [Vinta Software](https://www.vinta.com.br/) and is used in products of Vinta's clients. We are always looking for exciting work! If you need any commercial support, feel free to get in touch: contact@vinta.com.br
